@@ -7,9 +7,38 @@
     android:layout_margin="4dp"
     card_view:cardCornerRadius="4dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="opaaaa"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/img_mesa"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/mesa"/>
+
+        <TextView
+            android:id="@+id/tv_numero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/img_mesa"
+            android:text="Número:"
+            android:paddingTop="20dp"
+            android:layout_marginLeft="10dp"/>
+        <TextView
+            android:id="@+id/tv_lugares"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/img_mesa"
+            android:layout_below="@id/tv_numero"
+            android:text="Quantidade de pessoas:"
+            android:paddingTop="20dp"
+            android:layout_marginLeft="10dp"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="2dp"
+        android:layout_height="2dp"
+        android:background="#000"/>
+
 
 </android.support.v7.widget.CardView>

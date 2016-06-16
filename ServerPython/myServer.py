@@ -41,13 +41,16 @@ class myHandler(BaseHTTPRequestHandler):
 					self.end_headers()
 					self.wfile.write(bytes("true","utf-8"))
 				else:
-					self.send_response(401)
+					self.send_response(400)
 					self.send_header('Content-type','text/plain')
 					self.end_headers()
 					self.wfile.write(bytes("false","utf-8"))
-			except:
+			except Exception as error:
 				self.send_response(400)
 				self.end_headers()
+				print(type(error))
+				print("Args erro: " + str(error.args))				
+				print("Erro: " + str(error))
 
 
 try:

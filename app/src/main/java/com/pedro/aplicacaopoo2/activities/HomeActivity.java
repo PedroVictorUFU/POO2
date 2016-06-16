@@ -85,7 +85,7 @@ public class HomeActivity extends AppCompatActivity {
         Fragment fragment = null;
         Class fragmentClass;
         switch (item.getItemId()){
-            case R.id.nav_first_fragment:
+            case R.id.nav_second_fragment:
                 fragmentClass = FragmentTables.class;
                 break;
             case R.id.nav_third_fragment:
