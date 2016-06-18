@@ -4,6 +4,8 @@ import java.util.ArrayList;
  * Created by Syane on 16/06/2016.
  */
 
+//No garcon é utilizado o Padrão de projeto Observer onde garcon é o Observador do Sujeito no caso Order e Mesa
+
 public class Garcon extends Funcionario implements Observer {
 
     private int numGarcon;
@@ -38,14 +40,20 @@ public class Garcon extends Funcionario implements Observer {
 
     //Funcao que faz o garcon responder ao chamado da mesa
     public void asnwerTable(Table table){
-        this.table.add(table);
-        table.getAlarm().chageSign(table);
-        table.setGarcon(this);
+        if(table.getGarcon() == null) {
+            this.table.add(table);
+            table.getAlarm().chageSign(table);
+            table.setGarcon(this);
+        }
+        else{
+
+            System.out.println("Atendimento da mesa feito pelo Garcon: " +table.getGarcon().getNumGarcon());
+        }
     }
 
     //Funcao que faz o garcon fazer um pedido para a mesa e enviar a cozinha
-    public void sendOrder(Table table,Kitchen kitchen,int num){
-        kitchen.addOrder(table.makeaOrder(num,this));
+    public void sendOrder(Table table,Kitchen kitchen){
+        kitchen.addOrder(table.getOrder());
     }
 
     //Getters e Setters dos atributos contido na classe

@@ -1,0 +1,55 @@
+
+Restaurante
+
+Classe Funcionario
+Onde eu faco o cadastro de um novo funcionario e eu tenho tipos de funcionario
+    private int num;
+    private String nome;
+    private String RG;
+    private String endereco;
+    private String telefone;
+
+    Nessa classe voce só vai achar um construtor, os Getters e Setters dos atributos da Classe.
+
+Classe Garcon extends Funcionario implements Observer
+
+Garcon é um funcionario, e garcon é uma funcao no meu restaurante
+
+ 	private int numGarcon;
+    private String login;
+    private String senha;
+    private ArrayList<Table> table = new ArrayList<Table>();
+
+
+    /Funcao do Observer quando recebe um chamado da mesa
+    @Override
+    public void update(Subject s,boolean sign, int num)
+
+     //Funcão que aciona o garcon quando o pedido esta pronto dado pelo Observer
+    public void updateOrder(Subject s,boolean sign,Order order);
+
+    //Funcao que faz o garcon responder ao chamado da mesa, ele muda o sinal do alarme para avisar
+    aos outros garcons o atendimento daquela mesa;
+    Se caso a mesa já foi atendida ele da uma saida com a mensagem avisando e qual garçon fez o atendimento da mesa.
+    public void asnwerTable(Table table);
+
+    //Funcao que faz o garcon enviar um pedido a cozinha
+    public void sendOrder(Table table,Kitchen kitchen);
+
+    Classe Subject e Observer são o meu padrao Observer
+
+    Classe Menu é uma Lista de item de Bebidas ou pratos
+
+  //Component
+Minha  class Item é onde eu aplico o meu padrao decorator e meus concrete componet são:
+Bebidas
+Bebidas Industrializadas
+Pratos
+//Decorator
+Minha classe ItemDecorado é meu decorator
+Minha classe Ingrediente é o meu concrete decorator onde eu entro com o nome do ingrediente que estou add e o preco do mesmo.
+Essas modificacoes sao feitas nos meus Itens.
+So possui os Getters e Setters para acessar o nome do item + seus item ingredientes
+e o seu preço + seus preco de ingredientes
+
+//Minha classe MododePreparo é meu Strategy e MododePreparo1 e MododePreparo2 são meus concrete Strategies pois os itens do menu podem ser preparados por uma receita ou nao necessitar de preparo.

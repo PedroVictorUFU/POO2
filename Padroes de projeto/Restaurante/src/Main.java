@@ -40,7 +40,7 @@ public class Main {
         table1.makeaOrder(1, table1.getGarcon());
 
         //Garcon da mesa envia pedido para cozinha
-        table1.getGarcon().sendOrder(table1,kitchen,table1.getOrder().getNum());
+        table1.getGarcon().sendOrder(table1,kitchen);
         //Cozinha envia informação de que o pedido esta pronto
         kitchen.readyOrder(table1.getOrder());
 
@@ -50,5 +50,43 @@ public class Main {
             System.out.println(o.getNum());
         }
         */
+
+        //Teste do Menu
+        Menu menu = new Menu();
+        Item item1;
+        Item item2;
+        Item item3;
+        Item item4;
+
+        //public void Dish(String Nome, float preco)
+        item1 = new Dish("Tigela de Brigadeiro",2.);
+        item1 = new Ingrediente(item1,"Leite Condensado",3.);
+        item1 = new Ingrediente(item1,"Po de chocolate",3.);
+
+        item4 = new Dish("Porção de Arroz",4.);
+        item4 = new Ingrediente(item4,"Cebola",0.5);
+        item4 = new Ingrediente(item4,"Alho",0.5);
+
+        // public Beverage(String nome, float preco)
+        item2 = new Beverage("Suco",4.);
+        item2 = new Ingrediente(item2,"Laranja",1.);
+        item2 = new Ingrediente(item2,"Gelo",0);
+
+        item3 = new IndustrializedBeverage("Soda 2 L",4.);
+
+        menu.setDishes(item1);
+        menu.setBeverages(item2);
+        menu.setBeverages(item3);
+        menu.setDishes(item4);
+
+        System.out.println("\nBebidas:");
+        for (Item i: menu.getBeverages()){
+            System.out.println(i.getNome() + " Valor : " + i.getPreco());
+        }
+
+        System.out.println("\nPratos:");
+        for (Item i: menu.getDishes()){
+            System.out.println(i.getNome() + " Valor : " + i.getPreco());
+        }
     }
 }

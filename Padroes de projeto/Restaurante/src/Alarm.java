@@ -3,6 +3,8 @@ import java.util.ArrayList;
 /**
  * Created by Syane on 16/06/2016.
  */
+
+//No alarm é utilizado o Subject do padrão de projeto Observer e o Alarme ele pertence a Mesa
 public class Alarm implements Subject {
 
     private boolean sign = false;

@@ -24,6 +24,7 @@ public class Kitchen implements Subject {
         observers.remove(o);
     }
 
+    //Muda o valor do Alarme
     public void readyOrder(Order order){
         this.changeSign(order);
     }
@@ -34,6 +35,10 @@ public class Kitchen implements Subject {
         else
             this.sign = true;
         notifyGarcon(order);
+    }
+
+    public void addOrder(Order order) {
+        orders.add(order);
     }
 
     //Mandao aviso para o garcon de que o pedido da mesa em atendimento esta pronto
@@ -48,10 +53,6 @@ public class Kitchen implements Subject {
 
     public void setSign(boolean sign) {
         this.sign = sign;
-    }
-
-    public void addOrder(Order order) {
-        orders.add(order);
     }
 
     public ArrayList<Order> getOrders() {
