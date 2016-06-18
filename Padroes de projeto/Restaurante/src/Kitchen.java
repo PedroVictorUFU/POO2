@@ -10,9 +10,7 @@ public class Kitchen implements Subject {
     private ArrayList<Observer> observers = new ArrayList<Observer>();
 
     @Override
-    public void addObserver(Observer o) {
-        observers.add(o);
-    }
+    public void addObserver(Observer o) { observers.add(o); }
 
     @Override
     public void notifyObserver(int num) {
@@ -38,15 +36,14 @@ public class Kitchen implements Subject {
         notifyGarcon(order);
     }
 
+    //Mandao aviso para o garcon de que o pedido da mesa em atendimento esta pronto
     public void notifyGarcon(Order order) {
-        System.out.println(order.getGarcon().getNome());
-
-        /*order.getGarcon().updateOrder(this,this.sign,order);*/
-        /*this.setSign(false);*/
+        order.getGarcon().updateOrder(this,this.sign,order);
+        this.setSign(false);
     }
 
     public boolean isSign() {
-        return sign;
+        return this.sign;
     }
 
     public void setSign(boolean sign) {
@@ -58,7 +55,7 @@ public class Kitchen implements Subject {
     }
 
     public ArrayList<Order> getOrders() {
-        return orders;
+        return this.orders;
     }
 
     public void setOrders(ArrayList<Order> orders) {

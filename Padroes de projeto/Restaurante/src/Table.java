@@ -23,24 +23,20 @@ public class Table {
             alarm.notifyGarcon(this.garcon,this.num);
     }
 
-    public Garcon getGarcon() {
-        return garcon;
+
+    //Fazendo pedido na mesa
+    public Order makeaOrder(int num, Garcon garcon){
+        this.order = new Order(num,this,garcon);
+        return this.order;
     }
 
+    //Getters e Setter dos atributos da classe
     public void setGarcon(Garcon garcon) {
         this.garcon = garcon;
     }
 
-    public int getNum() {
-        return num;
-    }
-
     public void setNum(int num) {
         this.num = num;
-    }
-
-    public Alarm getAlarm() {
-        return alarm;
     }
 
     public void setAlarm(Alarm alarm) {
@@ -51,12 +47,21 @@ public class Table {
         this.order = order;
     }
 
+
     public Order getOrder(){
         return this.order;
     }
 
-    public Order makeaOrder(int num, Garcon garcon){
-        this.order = new Order(num,this,garcon);
-        return order;
+    public Garcon getGarcon() {
+        return this.garcon;
     }
+
+    public Alarm getAlarm() {
+        return this.alarm;
+    }
+
+    public int getNum() {
+        return this.num;
+    }
+
 }

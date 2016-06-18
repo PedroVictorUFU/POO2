@@ -3,6 +3,7 @@ import java.util.ArrayList;
 /**
  * Created by Syane on 16/06/2016.
  */
+
 public class Garcon extends Funcionario implements Observer {
 
     private int numGarcon;
@@ -18,6 +19,7 @@ public class Garcon extends Funcionario implements Observer {
 
     }
 
+    //Funcao do Observer quando recebe um chamado da mesa
     @Override
     public void update(Subject s,boolean sign, int num) {
         System.out.print("Garcon "+getNumGarcon()+ ": ");
@@ -28,36 +30,43 @@ public class Garcon extends Funcionario implements Observer {
             System.out.println("[INFO] A mesa de numero " + num + " ,acabou de ser atendida\n");
     }
 
+    //Funcão que aciona o garcon quando o pedido esta pronto
     public void updateOrder(Subject s,boolean sign,Order order){
-        System.out.println("[INFO COZINHA] O pedido da mesa: "+ order.getTable().getNum() +"está pronto!");
+        System.out.println("Garçon: nº "+this.getNumGarcon()+" " + this.getNome());
+        System.out.println("[INFO COZINHA] O pedido da mesa: "+ order.getTable().getNum() +" está pronto!");
     }
 
-    public int getNumGarcon() {
-        return numGarcon;
-    }
-
-    public void setNumGarcon(int numGarcon) {
-        this.numGarcon = numGarcon;
-    }
-
+    //Funcao que faz o garcon responder ao chamado da mesa
     public void asnwerTable(Table table){
         this.table.add(table);
         table.getAlarm().chageSign(table);
+        table.setGarcon(this);
     }
 
-    public String getLogin() {
-        return login;
+    //Funcao que faz o garcon fazer um pedido para a mesa e enviar a cozinha
+    public void sendOrder(Table table,Kitchen kitchen,int num){
+        kitchen.addOrder(table.makeaOrder(num,this));
     }
 
-    public String getSenha() {
-        return senha;
+    //Getters e Setters dos atributos contido na classe
+    public void setNumGarcon(int numGarcon) {
+        this.numGarcon = numGarcon;
     }
 
     public void setSenha(String senha) {
         this.senha = senha;
     }
 
-    public void sendOrder(Table table,Kitchen kitchen,int num){
-        kitchen.addOrder(table.makeaOrder(num,this));
+    public void setLogin(String login) { this.login = login; }
+
+    public int getNumGarcon() {
+        return numGarcon;
     }
+
+    public String getLogin() {
+        return this.login;
+    }
+
+    public String getSenha() { return this.senha; }
+
 }

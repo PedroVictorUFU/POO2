@@ -12,27 +12,26 @@ public class Order {
         this.garcon = garcon;
     }
 
-    public int getNum() {
-        return num;
-    }
-
     public void setNum(int num) {
         this.num = num;
-    }
-
-    public Table getTable() {
-        return table;
     }
 
     public void setTable(Table table) {
         this.table = table;
     }
 
-    public Garcon getGarcon() {
-        return garcon;
-    }
-
     public void setGarcon(Garcon garcon) {
         this.garcon = garcon;
     }
+
+    public Garcon getGarcon() {
+        return this.garcon;
+    }
+
+    public int getNum() {
+        return this.num;
+    }
+
+    public Table getTable() { return this.table; }
 }
+

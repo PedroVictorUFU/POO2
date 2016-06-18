@@ -1,5 +1,3 @@
-import javafx.scene.control.Tab;
-
 import java.util.ArrayList;
 
 /**
@@ -40,10 +38,7 @@ public class Alarm implements Subject {
         notifyObserver(table.getNum());
     }
 
-    public boolean isSign() {
-        return sign;
-    }
-
+    //Getters e Setters dos atributos da classe
     public void setSign(boolean sign) {
         this.sign = sign;
     }
@@ -53,6 +48,10 @@ public class Alarm implements Subject {
     }
 
     public ArrayList<Observer> getObservers() {
-        return observers;
+        return this.observers;
+    }
+
+    public boolean isSign() {
+        return this.sign;
     }
 }
