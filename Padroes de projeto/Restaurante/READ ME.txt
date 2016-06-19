@@ -21,12 +21,9 @@ Garcon é um funcionario, e garcon é uma funcao no meu restaurante
     private ArrayList<Table> table = new ArrayList<Table>();
 
 
-    /Funcao do Observer quando recebe um chamado da mesa
-    @Override
-    public void update(Subject s,boolean sign, int num)
+    //Funcão que informa  sobre o  pedido para o garcon sempre que a cozinha muda o estado do pedido
+    public void updateOrder(Subject s,Order order
 
-     //Funcão que aciona o garcon quando o pedido esta pronto dado pelo Observer
-    public void updateOrder(Subject s,boolean sign,Order order);
 
     //Funcao que faz o garcon responder ao chamado da mesa, ele muda o sinal do alarme para avisar
     aos outros garcons o atendimento daquela mesa;
@@ -36,9 +33,15 @@ Garcon é um funcionario, e garcon é uma funcao no meu restaurante
     //Funcao que faz o garcon enviar um pedido a cozinha
     public void sendOrder(Table table,Kitchen kitchen);
 
-    Classe Subject e Observer são o meu padrao Observer
+    //Funcao que cancela o Pedido na lista da cozinha
+    public void cancelOrder(Table table, Kitchen kitchen);
 
-    Classe Menu é uma Lista de item de Bebidas ou pratos
+    //Retira item da mesa se possivel, isso depende do estado em que está o Pedido.
+    public void removeItemPedido(Table table, Item item)
+
+ Classe Subject e Observer são o meu padrao Observer
+
+ Classe Menu é uma Lista de item de Bebidas ou pratos
 
   //Component
 Minha  class Item é onde eu aplico o meu padrao decorator e meus concrete componet são:
@@ -53,3 +56,14 @@ So possui os Getters e Setters para acessar o nome do item + seus item ingredien
 e o seu preço + seus preco de ingredientes
 
 //Minha classe MododePreparo é meu Strategy e MododePreparo1 e MododePreparo2 são meus concrete Strategies pois os itens do menu podem ser preparados por uma receita ou nao necessitar de preparo.
+
+//Minha classe Order é o Meu Pedido
+No meu pedido eu tenho uma lista de itens 
+e também tenho o Estado do Pedido que são
+Em espera : Posso add, remover ou Cancelar Pedido e fechar conta, se caso a conta for fechada o estado muda para Fechado.
+Em Preparo : Onde so posso add Itens, e fechar conta que muda para Fechado.
+
+Pronto: onde posso add itens e o estado muda para Em espera ou Fechar conta que muda para Fechado.
+
+Fechado: Onde modificação nenhuma pode ser feita, ele lista todos os itens e da o total do pedido.
+

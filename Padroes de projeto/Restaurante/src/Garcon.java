@@ -32,10 +32,10 @@ public class Garcon extends Funcionario implements Observer {
             System.out.println("[INFO] A mesa de numero " + num + " ,acabou de ser atendida\n");
     }
 
-    //Funcão que aciona o garcon quando o pedido esta pronto
-    public void updateOrder(Subject s,boolean sign,Order order){
+    //Funcão que da informações sobre o  pedido para o garcon
+    public void updateOrder(Subject s,Order order){
         System.out.println("Garçon: nº "+this.getNumGarcon()+" " + this.getNome());
-        System.out.println("[INFO COZINHA] O pedido da mesa: "+ order.getTable().getNum() +" está pronto!");
+        System.out.println("[INFO PEDIDO] O pedido da mesa: "+ order.getTable().getNum() +" esta " + order.getState().mostraEstado());
     }
 
     //Funcao que faz o garcon responder ao chamado da mesa
@@ -51,10 +51,27 @@ public class Garcon extends Funcionario implements Observer {
         }
     }
 
-    //Funcao que faz o garcon fazer um pedido para a mesa e enviar a cozinha
+    //Funcao que faz o garcon enviar o pedido a cozinha
     public void sendOrder(Table table,Kitchen kitchen){
         kitchen.addOrder(table.getOrder());
     }
+
+    //Funcao que cancela o Pedido na lista da cozinha
+    public void cancelOrder(Table table, Kitchen kitchen) {
+        if(table.getOrder().getState().getState() == "Em Espera")
+        kitchen.removeOrder(table.getOrder());
+        else
+            System.out.println("[INFO COZINHA] O pedido não ser cancelado.");
+    }
+
+    //Funcao para add Item ao pedido
+    public void makeOrder(Table table, Item item) { table.getOrder().getState().addItem(item); }
+
+    //Fecha a conta da mesa
+    public void fecharConta(Table table) {table.getOrder().getState().fechaConta();}
+
+    //Retira item da mesa se possivel
+    public void removeItemPedido(Table table, Item item) { table.getOrder().getState().retiraItem(item);}
 
     //Getters e Setters dos atributos contido na classe
     public void setNumGarcon(int numGarcon) {

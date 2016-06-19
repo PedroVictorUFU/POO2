@@ -24,27 +24,23 @@ public class Kitchen implements Subject {
         observers.remove(o);
     }
 
-    //Muda o valor do Alarme
-    public void readyOrder(Order order){
-        this.changeSign(order);
-    }
-
-    public void changeSign(Order order){
-        if(sign)
-            this.sign = false;
-        else
-            this.sign = true;
+    public void changeState(Order order){
+        order.getState().chageState();
         notifyGarcon(order);
     }
 
     public void addOrder(Order order) {
-        orders.add(order);
+        order.setKitchen(this);
+        this.orders.add(order);
+
     }
+
+    public void removeOrder(Order order) { this.orders.remove(order); }
 
     //Mandao aviso para o garcon de que o pedido da mesa em atendimento esta pronto
     public void notifyGarcon(Order order) {
-        order.getGarcon().updateOrder(this,this.sign,order);
-        this.setSign(false);
+        order.getGarcon().updateOrder(this,order);
+        //this.setSign(false);
     }
 
     public boolean isSign() {

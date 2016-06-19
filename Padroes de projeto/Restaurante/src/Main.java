@@ -28,22 +28,6 @@ public class Main {
         table2.getAlarm().addObserver(garcon2);
         table2.getAlarm().addObserver(garcon3);
 
-        //Fazendo com que a mesa chame todos os garcons para atendimento
-        table1.callGarcon();
-        table2.callGarcon();
-
-        //Garcon faz o atendimento a Mesa
-        garcon2.asnwerTable(table2);
-        garcon1.asnwerTable(table1);
-
-        //Mesa faz Pedido
-        table1.makeaOrder(1, table1.getGarcon());
-
-        //Garcon da mesa envia pedido para cozinha
-        table1.getGarcon().sendOrder(table1,kitchen);
-        //Cozinha envia informação de que o pedido esta pronto
-        kitchen.readyOrder(table1.getOrder());
-
         //for so para verificar se o pedido foi add a lista de pedidos da cozinha
         /*
         for (Order o: kitchen.getOrders()){
@@ -79,14 +63,64 @@ public class Main {
         menu.setBeverages(item3);
         menu.setDishes(item4);
 
+        System.out.println("----Menu---");
+        System.out.println("\nPratos:");
+        for (Item i: menu.getDishes()){
+            System.out.println(i.getNome() + " Valor : " + i.getPreco());
+        }
+
         System.out.println("\nBebidas:");
         for (Item i: menu.getBeverages()){
             System.out.println(i.getNome() + " Valor : " + i.getPreco());
         }
 
-        System.out.println("\nPratos:");
-        for (Item i: menu.getDishes()){
-            System.out.println(i.getNome() + " Valor : " + i.getPreco());
-        }
+        System.out.println();
+        //Fazendo com que a mesa chame todos os garcons para atendimento
+        table1.callGarcon();
+        System.out.println();
+        table2.callGarcon();
+
+        //Garcon faz o atendimento a Mesa
+        System.out.println();
+        garcon2.asnwerTable(table2);
+        System.out.println();
+        garcon1.asnwerTable(table2);
+        System.out.println();
+        garcon1.asnwerTable(table1);
+
+        //Mesa faz Pedido
+        table1.makeaOrder(1, table1.getGarcon());
+        table2.makeaOrder(2,table2.getGarcon());
+        //Garcon montando pedido da mesa 1
+        table1.getGarcon().makeOrder(table1,item1);
+        table1.getGarcon().makeOrder(table1,item2);
+        //Garcon 2 montando pedido da mesa 2
+        table2.getGarcon().makeOrder(table2,item4);
+        table2.getGarcon().makeOrder(table2,item3);
+
+        //Garcon da mesa envia pedido para cozinha
+        table1.getGarcon().sendOrder(table1,kitchen);
+        table2.getGarcon().sendOrder(table1,kitchen);
+
+        //Cozinha muda os estados do pedido assim que começa a preparar.. ou quando esta pronto
+        //Em preparo
+        kitchen.changeState(table1.getOrder());
+        System.out.println();
+        kitchen.changeState(table2.getOrder());
+        System.out.println();
+        //Prontos
+        kitchen.changeState(table1.getOrder());
+        System.out.println();
+        kitchen.changeState(table2.getOrder());
+        System.out.println();
+
+        //Fechando as contas da Mesa
+        table1.getGarcon().fecharConta(table1);
+        System.out.println();
+        table2.getGarcon().fecharConta(table2);
+
+        //Teste depois de fechado se podera fazer algum pedido
+        System.out.println();
+        table1.getGarcon().makeOrder(table1,item2);
     }
 }
